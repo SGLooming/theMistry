@@ -4,9 +4,9 @@
  * Last modified: 2021.09.16 at 12:29:38
  * Copyright (c) 2021
  */
-
+namespace Database\Seeders;
 use Illuminate\Database\Seeder;
-
+use Database\Seeders\UsersTableSeeder;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
         // $this->call(RolesTableSeeder::class);
         // $this->call(PermissionsTableSeeder::class);
         // $this->call(ModelHasPermissionsTableSeeder::class);
