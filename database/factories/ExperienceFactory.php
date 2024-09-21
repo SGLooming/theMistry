@@ -1,27 +1,39 @@
 <?php
 
+namespace Database\Factories;
+
 use App\Models\EProvider;
 use App\Models\Experience;
-use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-/** @var Factory $factory */
-$factory->define(Experience::class, function (Faker $faker) {
-    return [
-        'title' => $faker->text(127),
-        'description' => $faker->realText(),
-        'e_provider_id' => EProvider::all()->random()->id
-    ];
-});
+class ExperienceFactory extends Factory
+{
+    protected $model = Experience::class;
 
-$factory->state(Experience::class, 'title_more_127_char', function (Faker $faker) {
-    return [
-        'title' => $faker->paragraph(20),
-    ];
-});
+    public function definition()
+    {
+        return [
+            'title' => $this->faker->text(127),
+            'description' => $this->faker->realText(),
+            'e_provider_id' => EProvider::all()->random()->id,
+        ];
+    }
 
-$factory->state(Experience::class, 'not_exist_e_provider_id', function (Faker $faker) {
-    return [
-        'e_provider_id' => 500000, // not exist id
-    ];
-});
+    public function titleMore127Char()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'title' => $this->faker->paragraph(20),
+            ];
+        });
+    }
+
+    public function notExistEProviderId()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'e_provider_id' => 500000, // non-existent ID
+            ];
+        });
+    }
+}

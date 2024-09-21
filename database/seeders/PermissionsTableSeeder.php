@@ -4,9 +4,10 @@
  * Last modified: 2022.04.02 at 05:05:39
  * Copyright (c) 2022
  */
-
-use Carbon\Carbon;
+namespace Database\Seeders;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class PermissionsTableSeeder extends Seeder
 {

@@ -9,6 +9,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class CustomFieldValue
@@ -23,9 +24,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class CustomFieldValue extends Model
 {
+    use HasFactory;
 
     public $table = 'custom_field_values';
-    
+
 
 
     public $fillable = [
@@ -66,7 +68,7 @@ class CustomFieldValue extends Model
      * @var array
      */
     protected $appends = [
-        
+
     ];
 
     /**

@@ -14,9 +14,14 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
 use Spatie\Image\Exceptions\InvalidManipulation;
 use Spatie\Image\Manipulations;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+
+
 
 /**
  * Class User
@@ -34,11 +39,10 @@ use Spatie\Permission\Traits\HasRoles;
  */
 class User extends Authenticatable implements HasMedia
 {
+    use HasFactory;
     use Notifiable;
     use Billable;
-    use HasMediaTrait {
-        getFirstMediaUrl as protected getFirstMediaUrlTrait;
-    }
+    use InteractsWithMedia;
     use HasRoles;
 
     /**
@@ -100,7 +104,8 @@ class User extends Authenticatable implements HasMedia
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -118,7 +123,7 @@ class User extends Authenticatable implements HasMedia
      * @param Media|null $media
      * @throws InvalidManipulation
      */
-    public function registerMediaConversions(\Spatie\MediaLibrary\Models\Media $media = null)
+    public function registerMediaConversions(?Media $media = null): void // Add return type
     {
         $this->addMediaConversion('thumb')
             ->fit(Manipulations::FIT_CROP, 200, 200)

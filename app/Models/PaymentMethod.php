@@ -14,6 +14,7 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class PaymentMethod
@@ -29,6 +30,7 @@ use Spatie\MediaLibrary\Models\Media;
  */
 class PaymentMethod extends Model implements HasMedia
 {
+    use HasFactory;
     use HasTranslations;
 
     /**

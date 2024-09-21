@@ -9,6 +9,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Notification
@@ -21,7 +22,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Notification extends Model
 {
-
+    use HasFactory;
     public $table = 'notifications';
     protected $primaryKey = 'id'; // or null
     public $incrementing = false;

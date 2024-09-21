@@ -13,6 +13,7 @@ use Illuminate\Contracts\Database\Eloquent\Castable;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Contracts\Database\Eloquent\CastsInboundAttributes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Address
@@ -30,6 +31,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Address extends Model implements Castable
 {
+    use HasFactory;
 
     /**
      * Validation rules
@@ -79,9 +81,10 @@ class Address extends Model implements Castable
     ];
 
     /**
-     * @return CastsAttributes|CastsInboundAttributes|string
+     * @param array $arguments
+     * @return string
      */
-    public static function castUsing()
+    public static function castUsing(array $arguments)
     {
         return AddressCast::class;
     }

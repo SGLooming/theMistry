@@ -7,22 +7,23 @@
 
 namespace App\Models;
 
+use Eloquent as Model;
 use App\Casts\EServiceCast;
 use App\Traits\HasTranslations;
-use Eloquent as Model;
+use Spatie\Image\Manipulations;
+use Illuminate\Support\Facades\DB;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Collection;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\Image\Exceptions\InvalidManipulation;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Contracts\Database\Eloquent\Castable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Contracts\Database\Eloquent\CastsInboundAttributes;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Facades\DB;
-use Spatie\Image\Exceptions\InvalidManipulation;
-use Spatie\Image\Manipulations;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
  * Class EService
@@ -46,13 +47,9 @@ use Spatie\MediaLibrary\Models\Media;
  * @property boolean available
  * @property integer e_provider_id
  */
-class EService extends Model implements HasMedia, Castable
+class EService extends Model implements Castable
 {
-    use HasMediaTrait {
-        getFirstMediaUrl as protected getFirstMediaUrlTrait;
-    }
-
-    use HasTranslations;
+    use InteractsWithMedia,HasTranslations,HasFactory;
 
     /**
      * Validation rules
@@ -130,7 +127,7 @@ class EService extends Model implements HasMedia, Castable
     /**
      * @return CastsAttributes|CastsInboundAttributes|string
      */
-    public static function castUsing()
+    public static function castUsing(array $arguments)
     {
         return EServiceCast::class;
     }
@@ -158,16 +155,15 @@ class EService extends Model implements HasMedia, Castable
      */
     public function getFirstMediaUrl($collectionName = 'default', $conversion = '')
     {
-        $url = $this->getFirstMediaUrlTrait($collectionName);
+        $url = parent::getFirstMediaUrl($collectionName, $conversion);
         $array = explode('.', $url);
         $extension = strtolower(end($array));
         if (in_array($extension, config('medialibrary.extensions_has_thumb'))) {
-            return asset($this->getFirstMediaUrlTrait($collectionName, $conversion));
+            return asset($url);
         } else {
             return asset(config('medialibrary.icons_folder') . '/' . $extension . '.png');
         }
     }
-
     public function getCustomFieldsAttribute()
     {
         $hasCustomField = in_array(static::class, setting('custom_field_models', []));

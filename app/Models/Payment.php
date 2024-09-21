@@ -10,6 +10,7 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Payment
@@ -28,6 +29,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 class Payment extends Model
 {
+    use HasFactory;
 
     /**
      * Validation rules

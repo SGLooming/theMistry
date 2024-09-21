@@ -1,5 +1,5 @@
 <?php
-
+namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -17,7 +17,7 @@ class AdminServiceEditPermissionSeeder extends Seeder
         $permission1 = Permission::create(['name' => 'eProviders.services.delete']);
 
         $role = Role::findByName('admin');
-        
+
         $role->givePermissionTo($permission);
         $role->givePermissionTo($permission1);
     }

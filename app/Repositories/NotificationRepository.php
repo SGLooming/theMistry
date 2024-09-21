@@ -8,7 +8,7 @@
 namespace App\Repositories;
 
 use App\Models\Notification;
-use InfyOm\Generator\Common\BaseRepository;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class NotificationRepository

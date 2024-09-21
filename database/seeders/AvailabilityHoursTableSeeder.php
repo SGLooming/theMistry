@@ -4,9 +4,11 @@
  * Last modified: 2021.02.01 at 22:22:23
  * Copyright (c) 2021
  */
+namespace Database\Seeders;
 
-use App\Models\AvailabilityHour;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
+use App\Models\AvailabilityHour;
 
 class AvailabilityHoursTableSeeder extends Seeder
 {
@@ -21,6 +23,7 @@ class AvailabilityHoursTableSeeder extends Seeder
         DB::table('availability_hours')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        factory(AvailabilityHour::class, 50)->create();
+        // Use the new factory method
+        AvailabilityHour::factory()->count(50)->create();
     }
 }

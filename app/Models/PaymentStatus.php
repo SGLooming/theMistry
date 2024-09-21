@@ -9,6 +9,7 @@ namespace App\Models;
 
 use App\Traits\HasTranslations;
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class PaymentStatus
@@ -21,7 +22,7 @@ use Eloquent as Model;
 class PaymentStatus extends Model
 {
     use HasTranslations;
-
+    use HasFactory;
     /**
      * Validation rules
      *

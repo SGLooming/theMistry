@@ -1,32 +1,47 @@
 <?php
 
+namespace Database\Factories;
+
 use App\Models\EProviderType;
-use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-/** @var Factory $factory */
-$factory->define(EProviderType::class, function (Faker $faker) {
-    return [
-        'name' => $faker->text(48),
-        'commission' => $faker->randomFloat(2, 5, 50),
-        'disabled' => $faker->boolean(),
-    ];
-});
+class EProviderTypeFactory extends Factory
+{
+    protected $model = EProviderType::class;
 
-$factory->state(EProviderType::class, 'name_more_127_char', function (Faker $faker) {
-    return [
-        'name' => $faker->paragraph(20),
-    ];
-});
+    public function definition()
+    {
+        return [
+            'name' => $this->faker->text(48),
+            'commission' => $this->faker->randomFloat(2, 5, 50),
+            'disabled' => $this->faker->boolean(),
+        ];
+    }
 
-$factory->state(EProviderType::class, 'commission_more_100', function (Faker $faker) {
-    return [
-        'commission' => 101,
-    ];
-});
+    public function nameMore127Char()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'name' => $this->faker->paragraph(20),
+            ];
+        });
+    }
 
-$factory->state(EProviderType::class, 'commission_less_0', function (Faker $faker) {
-    return [
-        'commission' => -1,
-    ];
-});
+    public function commissionMore100()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'commission' => 101,
+            ];
+        });
+    }
+
+    public function commissionLess0()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'commission' => -1,
+            ];
+        });
+    }
+}

@@ -4,9 +4,10 @@
  * Last modified: 2021.03.01 at 21:22:30
  * Copyright (c) 2021
  */
-
-use App\Models\EService;
+namespace Database\Seeders;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
+use App\Models\EService;
 
 class EServicesTableSeeder extends Seeder
 {
@@ -19,6 +20,7 @@ class EServicesTableSeeder extends Seeder
     public function run()
     {
         DB::table('e_services')->delete();
-        factory(EService::class, 40)->create();
+        EService::factory()->count(40)->create();
+
     }
 }

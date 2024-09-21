@@ -9,6 +9,7 @@ namespace App\Models;
 
 use App\Traits\HasTranslations;
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class CustomPage
@@ -21,7 +22,7 @@ use Eloquent as Model;
  */
 class CustomPage extends Model
 {
-
+    use HasFactory;
     use HasTranslations;
 
     /**

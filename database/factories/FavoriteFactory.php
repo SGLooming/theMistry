@@ -1,13 +1,19 @@
 <?php
 
-use App\Models\Favorite;
-use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factory;
+namespace Database\Factories;
 
-/** @var Factory $factory */
-$factory->define(Favorite::class, function (Faker $faker) {
-    return [
-        'eservice_id' => $faker->numberBetween(1, 30),
-        'user_id' => $faker->numberBetween(1, 6)
-    ];
-});
+use App\Models\Favorite;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class FavoriteFactory extends Factory
+{
+    protected $model = Favorite::class;
+
+    public function definition()
+    {
+        return [
+            'eservice_id' => $this->faker->numberBetween(1, 30),
+            'user_id' => $this->faker->numberBetween(1, 6),
+        ];
+    }
+}

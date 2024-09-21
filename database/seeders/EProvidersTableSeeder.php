@@ -4,10 +4,12 @@
  * Last modified: 2021.03.02 at 11:28:53
  * Copyright (c) 2021
  */
-
+namespace Database\Seeders;
+use Exception;
 use App\Models\EProvider;
 use App\Models\EProviderUser;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class EProvidersTableSeeder extends Seeder
 {
@@ -25,18 +27,11 @@ class EProvidersTableSeeder extends Seeder
         DB::table('e_providers')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        factory(EProvider::class, 18)->create();
+        EProvider::factory()->count(18)->create();
+
         try {
-            factory(EProviderUser::class, 10)->create();
-        } catch (Exception $e) {
-        }
-        try {
-            factory(EProviderUser::class, 10)->create();
-        } catch (Exception $e) {
-        }
-        try {
-            factory(EProviderUser::class, 10)->create();
-        } catch (Exception $e) {
+            EProviderUser::factory()->count(10)->create();
+        } catch (\Exception $e) {
         }
 
     }

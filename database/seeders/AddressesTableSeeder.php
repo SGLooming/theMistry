@@ -4,8 +4,9 @@
  * Last modified: 2021.02.01 at 21:46:26
  * Copyright (c) 2021
  */
-
+namespace Database\Seeders;
 use App\Models\Address;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
 class AddressesTableSeeder extends Seeder
@@ -23,7 +24,8 @@ class AddressesTableSeeder extends Seeder
         DB::table('addresses')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        factory(Address::class, 20)->create();
+        Address::factory()->count(18)->create();
+
 
     }
 }

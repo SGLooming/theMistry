@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Booking
@@ -45,7 +46,7 @@ use Illuminate\Support\Facades\Date;
  */
 class Booking extends Model
 {
-
+    use HasFactory;
     /**
      * Validation rules
      *

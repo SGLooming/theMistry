@@ -10,6 +10,7 @@ namespace App\Models;
 use App\Traits\HasTranslations;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Award
@@ -24,7 +25,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Award extends Model
 {
-    use HasTranslations;
+    use HasTranslations,HasFactory;
 
     /**
      * Validation rules

@@ -1,17 +1,27 @@
 <?php
 
+namespace Database\Factories;
+
 use App\Models\Field;
-use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-global $i;
-$i = 0;
+class FieldFactory extends Factory
+{
+    protected $model = Field::class;
 
-/** @var Factory $factory */
-$factory->define(Field::class, function (Faker $faker) use ($i) {
-    $names = ['Grocery', 'Pharmacy', 'Restaurant', 'Store', 'Electronics', 'Furniture'];
-    return [
-        'name' => $names[$i++],
-        'description' => $faker->sentences(5, true),
-    ];
-});
+    private static $index = 0; // Static variable to keep track of the index
+
+    public function definition()
+    {
+        $names = ['Grocery', 'Pharmacy', 'Restaurant', 'Store', 'Electronics', 'Furniture'];
+
+        // Use the modulus operator to loop through names if there are more records than names
+        $name = $names[self::$index % count($names)];
+        self::$index++;
+
+        return [
+            'name' => $name,
+            'description' => $this->faker->sentences(5, true),
+        ];
+    }
+}

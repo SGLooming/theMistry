@@ -10,6 +10,7 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class EProviderPayout
@@ -25,7 +26,7 @@ use Illuminate\Support\Facades\Date;
  */
 class EProviderPayout extends Model
 {
-
+    use HasFactory;
     /**
      * Validation rules
      *

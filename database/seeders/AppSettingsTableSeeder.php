@@ -4,7 +4,9 @@
  * Last modified: 2022.01.19 at 12:21:56
  * Copyright (c) 2022
  */
+namespace Database\Seeders;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
 class AppSettingsTableSeeder extends Seeder

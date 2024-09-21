@@ -9,6 +9,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class EProviderReview
@@ -24,7 +25,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class EProviderReview extends Model
 {
-
+    use HasFactory;
     public $table = 'e_provider_reviews';
 
 

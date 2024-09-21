@@ -10,12 +10,12 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Advertisement extends Model implements HasMedia
 {
-    use HasMediaTrait {
-        getFirstMediaUrl as protected getFirstMediaUrlTrait;
-    }
+    use HasFactory,InteractsWithMedia;
     protected $table = 'advertisement';
 
     /**

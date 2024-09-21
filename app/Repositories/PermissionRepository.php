@@ -7,7 +7,7 @@
 
 namespace App\Repositories;
 
-use InfyOm\Generator\Common\BaseRepository;
+use Prettus\Repository\Eloquent\BaseRepository;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 

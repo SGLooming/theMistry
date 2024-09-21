@@ -5,7 +5,9 @@
  * Copyright (c) 2021
  */
 
-use Illuminate\Database\Seeder;
+ namespace Database\Seeders;
+ use Illuminate\Support\Facades\DB;
+ use Illuminate\Database\Seeder;
 
 class NotificationsTableSeeder extends Seeder
 {

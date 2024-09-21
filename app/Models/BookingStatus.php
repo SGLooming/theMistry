@@ -6,7 +6,7 @@
  */
 
 namespace App\Models;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Traits\HasTranslations;
 use Eloquent as Model;
 
@@ -21,7 +21,7 @@ use Eloquent as Model;
 class BookingStatus extends Model
 {
 
-    use HasTranslations;
+    use HasTranslations,HasFactory;
 
     /**
      * Validation rules

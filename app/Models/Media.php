@@ -10,6 +10,7 @@ namespace App\Models;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media as BaseMedia;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 /**
@@ -17,6 +18,7 @@ use Spatie\MediaLibrary\Models\Media as BaseMedia;
  */
 class Media extends BaseMedia implements HasMedia
 {
+    use HasFactory;
     use HasMediaTrait {
         getFirstMediaUrl as protected getFirstMediaUrlTrait;
     }

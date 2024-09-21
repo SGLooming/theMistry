@@ -2,18 +2,19 @@
 
 namespace Database\Factories;
 
+use App\Models\Address;
 use App\Models\EProvider;
-use App\Models\EProviderUser;
+use App\Models\EProviderAddress;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class EProviderUserFactory extends Factory
+class EProviderAddressFactory extends Factory
 {
-    protected $model = EProviderUser::class;
+    protected $model = EProviderAddress::class;
 
     public function definition()
     {
         return [
-            'user_id' => $this->faker->randomElement([2, 4, 6]),
+            'address_id' => Address::all()->random()->id,
             'e_provider_id' => EProvider::all()->random()->id,
         ];
     }

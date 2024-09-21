@@ -12,6 +12,7 @@ use App\Traits\Uuids;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Wallet
@@ -28,6 +29,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  */
 class Wallet extends Model
 {
+    use HasFactory;
     use Uuids;
 
     /**

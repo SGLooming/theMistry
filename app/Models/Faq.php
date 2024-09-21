@@ -10,6 +10,7 @@ namespace App\Models;
 use App\Traits\HasTranslations;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Faq
@@ -23,7 +24,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Faq extends Model
 {
-
+    use HasFactory;
     use HasTranslations;
 
     /**

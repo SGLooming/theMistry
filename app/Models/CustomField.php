@@ -8,6 +8,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class CustomField
@@ -25,9 +26,9 @@ use Eloquent as Model;
  */
 class CustomField extends Model
 {
-
+    use HasFactory;
     public $table = 'custom_fields';
-    
+
 
 
     public $fillable = [
@@ -75,9 +76,9 @@ class CustomField extends Model
      * @var array
      */
     protected $appends = [
-        
+
     ];
 
-    
-    
+
+
 }

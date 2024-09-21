@@ -14,6 +14,7 @@ use Eloquent as Model;
 use Illuminate\Contracts\Database\Eloquent\Castable;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Contracts\Database\Eloquent\CastsInboundAttributes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Coupon
@@ -29,7 +30,7 @@ use Illuminate\Contracts\Database\Eloquent\CastsInboundAttributes;
  */
 class Coupon extends Model implements Castable
 {
-
+    use HasFactory;
     use HasTranslations;
 
     /**

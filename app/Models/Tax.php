@@ -9,6 +9,7 @@ namespace App\Models;
 
 use App\Traits\HasTranslations;
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Tax
@@ -22,7 +23,7 @@ use Eloquent as Model;
  */
 class Tax extends Model
 {
-
+    use HasFactory;
     use HasTranslations;
 
     /**

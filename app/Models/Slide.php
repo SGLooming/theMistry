@@ -15,6 +15,7 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Slide
@@ -38,6 +39,7 @@ use Spatie\MediaLibrary\Models\Media;
  */
 class Slide extends Model implements HasMedia
 {
+    use HasFactory;
     use HasMediaTrait {
         getFirstMediaUrl as protected getFirstMediaUrlTrait;
     }

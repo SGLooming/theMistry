@@ -1,41 +1,59 @@
 <?php
 
+namespace Database\Factories;
+
 use App\Models\PaymentMethod;
-use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-/** @var Factory $factory */
-$factory->define(PaymentMethod::class, function (Faker $faker) {
-    return [
-        'name' => $faker->text(48),
-        'description' => $faker->sentence(5),
-        'route' => $faker->randomElement(['/PayPal', '/RazorPay', '/CashOnDelivery', '/Strip']),
-        'order' => $faker->numberBetween(1, 10),
-        'default' => $faker->boolean(),
-        'enabled' => $faker->boolean(),
-    ];
-});
+class PaymentMethodFactory extends Factory
+{
+    protected $model = PaymentMethod::class;
 
-$factory->state(PaymentMethod::class, 'name_more_127_char', function (Faker $faker) {
-    return [
-        'name' => $faker->paragraph(20),
-    ];
-});
+    public function definition()
+    {
+        return [
+            'name' => $this->faker->text(48),
+            'description' => $this->faker->sentence(5),
+            'route' => $this->faker->randomElement(['/PayPal', '/RazorPay', '/CashOnDelivery', '/Strip']),
+            'order' => $this->faker->numberBetween(1, 10),
+            'default' => $this->faker->boolean(),
+            'enabled' => $this->faker->boolean(),
+        ];
+    }
 
-$factory->state(PaymentMethod::class, 'description_more_127_char', function (Faker $faker) {
-    return [
-        'description' => $faker->paragraph(20),
-    ];
-});
+    public function nameMoreThan127Chars()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'name' => $this->faker->paragraph(20),
+            ];
+        });
+    }
 
-$factory->state(PaymentMethod::class, 'route_more_127_char', function (Faker $faker) {
-    return [
-        'route' => $faker->paragraph(20),
-    ];
-});
+    public function descriptionMoreThan127Chars()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'description' => $this->faker->paragraph(20),
+            ];
+        });
+    }
 
-$factory->state(PaymentMethod::class, 'order_negative', function (Faker $faker) {
-    return [
-        'order' => -1,
-    ];
-});
+    public function routeMoreThan127Chars()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'route' => $this->faker->paragraph(20),
+            ];
+        });
+    }
+
+    public function orderNegative()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'order' => -1,
+            ];
+        });
+    }
+}

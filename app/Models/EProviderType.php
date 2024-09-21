@@ -9,6 +9,7 @@ namespace App\Models;
 
 use App\Traits\HasTranslations;
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class EProviderType
@@ -22,7 +23,7 @@ use Eloquent as Model;
 class EProviderType extends Model
 {
     use HasTranslations;
-
+    use HasFactory;
     /**
      * Validation rules
      *

@@ -4,7 +4,8 @@
  * Last modified: 2021.01.07 at 13:46:50
  * Copyright (c) 2021
  */
-
+namespace Database\Seeders;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;

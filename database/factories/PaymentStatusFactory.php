@@ -1,19 +1,28 @@
 <?php
 
+namespace Database\Factories;
+
 use App\Models\PaymentStatus;
-use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-/** @var Factory $factory */
-$factory->define(PaymentStatus::class, function (Faker $faker) {
-    return [
-        'status' => $faker->text(48),
-        'order' => $faker->numberBetween(1, 10)
-    ];
-});
+class PaymentStatusFactory extends Factory
+{
+    protected $model = PaymentStatus::class;
 
-$factory->state(PaymentStatus::class, 'status_more_127_char', function (Faker $faker) {
-    return [
-        'status' => $faker->paragraph(20),
-    ];
-});
+    public function definition()
+    {
+        return [
+            'status' => $this->faker->text(48),
+            'order' => $this->faker->numberBetween(1, 10),
+        ];
+    }
+
+    public function statusMoreThan127Chars()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'status' => $this->faker->paragraph(20),
+            ];
+        });
+    }
+}

@@ -12,10 +12,11 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Image\Exceptions\InvalidManipulation;
 use Spatie\Image\Manipulations;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\Models\Media;
-
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\MediaLibrary\InteractsWithMedia;
 /**
  * Class Option
  * @package App\Models
@@ -32,9 +33,8 @@ use Spatie\MediaLibrary\Models\Media;
  */
 class Option extends Model implements HasMedia
 {
-    use HasMediaTrait {
-        getFirstMediaUrl as protected getFirstMediaUrlTrait;
-    }
+    use HasFactory;
+    use InteractsWithMedia;
     use HasTranslations;
 
     /**
@@ -93,7 +93,7 @@ class Option extends Model implements HasMedia
      * @param Media|null $media
      * @throws InvalidManipulation
      */
-    public function registerMediaConversions(Media $media = null)
+    public function registerMediaConversions(?Media $media = null): void // Update the method signature
     {
         $this->addMediaConversion('thumb')
             ->fit(Manipulations::FIT_CROP, 200, 200)

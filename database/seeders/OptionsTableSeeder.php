@@ -4,9 +4,10 @@
  * Last modified: 2021.03.01 at 21:57:23
  * Copyright (c) 2021
  */
-
-use App\Models\Option;
+namespace Database\Seeders;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
+use App\Models\Option;
 
 class OptionsTableSeeder extends Seeder
 {
@@ -19,6 +20,7 @@ class OptionsTableSeeder extends Seeder
     public function run()
     {
         DB::table('options')->delete();
-        factory(Option::class, 100)->create();
+        Option::factory()->count(100)->create();
+
     }
 }

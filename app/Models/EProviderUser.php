@@ -8,9 +8,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class EProviderUser extends Model
 {
+    use HasFactory;
     public $table = 'e_provider_users';
     public $timestamps = false;
 }

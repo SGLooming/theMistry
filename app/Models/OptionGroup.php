@@ -11,6 +11,7 @@ use App\Traits\HasTranslations;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class OptionGroup
@@ -23,6 +24,7 @@ use Illuminate\Support\Collection;
  */
 class OptionGroup extends Model
 {
+    use HasFactory;
     use HasTranslations;
 
     /**

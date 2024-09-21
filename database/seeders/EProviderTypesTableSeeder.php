@@ -4,7 +4,8 @@
  * Last modified: 2021.03.02 at 14:35:42
  * Copyright (c) 2021
  */
-
+namespace Database\Seeders;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
 class EProviderTypesTableSeeder extends Seeder

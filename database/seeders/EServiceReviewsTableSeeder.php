@@ -1,16 +1,13 @@
 <?php
-/*
- * File name: EServiceReviewsTableSeeder.php
- * Last modified: 2021.02.02 at 10:59:31
- * Copyright (c) 2021
- */
 
-use App\Models\EServiceReview;
+namespace Database\Seeders;
+
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
+use App\Models\EServiceReview;
 
 class EServiceReviewsTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -18,13 +15,11 @@ class EServiceReviewsTableSeeder extends Seeder
      */
     public function run()
     {
-
-
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('e_service_reviews')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        factory(EServiceReview::class, 100)->create();
-
+        // Correct usage of the factory method
+        EServiceReview::factory()->count(100)->create();
     }
 }

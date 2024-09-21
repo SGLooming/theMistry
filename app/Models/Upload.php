@@ -8,20 +8,20 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
-use Spatie\Image\Exceptions\InvalidManipulation;
-use Spatie\Image\Manipulations;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\Models\Media;
+use Spatie\Image\Exceptions\InvalidManipulation;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Upload extends Model implements HasMedia
 {
-    use HasMediaTrait {
-        getMedia as protected getMediaTrait;
-        getFirstMediaUrl as protected getFirstMediaUrlTrait;
-    }
+    use HasFactory;
+    use InteractsWithMedia;
     public $fillable = [
         'uuid'
     ];
@@ -32,7 +32,7 @@ class Upload extends Model implements HasMedia
      * @param Media|null $media
      * @throws InvalidManipulation
      */
-    public function registerMediaConversions(Media $media = null)
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
             ->fit(Manipulations::FIT_FILL, 200, 200)
@@ -47,7 +47,7 @@ class Upload extends Model implements HasMedia
     public function getFirstMediaUrl($collectionName = 'default', $conversion = '')
     {
         $url = $this->getFirstMediaUrlTrait($collectionName);
-        if($url){
+        if ($url) {
             $array = explode('.', $url);
             $extension = strtolower(end($array));
             if (in_array($extension, ['jpg', 'png', 'gif', 'bmp', 'jpeg'])) {
@@ -55,7 +55,7 @@ class Upload extends Model implements HasMedia
             } else {
                 return asset('images/icons/' . $extension . '.png');
             }
-        }else{
+        } else {
             return asset('images/image_default.png');
         }
     }
@@ -83,12 +83,8 @@ class Upload extends Model implements HasMedia
      * @param array $filters
      * @return Collection
      */
-    public function getMedia(string $collectionName = 'default', $filters = [])
+    public function getMedia(string $collectionName = 'default', $filters = []): Collection
     {
-
-        if (count($this->getMediaTrait($collectionName))) {
-            return $this->getMediaTrait($collectionName, $filters);
-        }
-        return $this->getMediaTrait('default', $filters);
+        return $this->getMedia($collectionName, $filters) ?: $this->getMedia('default', $filters);
     }
 }

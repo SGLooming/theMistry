@@ -8,7 +8,7 @@
 namespace App\Repositories;
 
 use App\Models\EProviderReview;
-use InfyOm\Generator\Common\BaseRepository;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class EProviderReviewRepository

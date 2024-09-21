@@ -14,9 +14,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Image\Exceptions\InvalidManipulation;
 use Spatie\Image\Manipulations;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\HasMedia;
 
 /**
  * Class Category
@@ -37,11 +38,8 @@ use Spatie\MediaLibrary\Models\Media;
  */
 class Category extends Model implements HasMedia
 {
-    use HasMediaTrait {
-        getFirstMediaUrl as protected getFirstMediaUrlTrait;
-    }
-
-    use HasTranslations;
+    use InteractsWithMedia;
+    use HasTranslations, HasFactory;
 
     /**
      * Validation rules
@@ -101,7 +99,7 @@ class Category extends Model implements HasMedia
      * @param Media|null $media
      * @throws InvalidManipulation
      */
-    public function registerMediaConversions(Media $media = null)
+    public function registerMediaConversions(?\Spatie\MediaLibrary\MediaCollections\Models\Media $media = null): void
     {
         $this->addMediaConversion('thumb')
             ->fit(Manipulations::FIT_CROP, 200, 200)

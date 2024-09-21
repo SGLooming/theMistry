@@ -4,9 +4,10 @@
  * Last modified: 2021.03.01 at 21:23:22
  * Copyright (c) 2021
  */
-
-use App\Models\Gallery;
+namespace Database\Seeders;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
+use App\Models\Gallery;
 
 class GalleriesTableSeeder extends Seeder
 {
@@ -19,6 +20,7 @@ class GalleriesTableSeeder extends Seeder
     public function run()
     {
         DB::table('galleries')->delete();
-        factory(Gallery::class, 20)->create();
+        Gallery::factory()->count(20)->create();
+
     }
 }

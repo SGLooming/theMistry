@@ -9,6 +9,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class CustomFieldValue
@@ -23,7 +24,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Discountable extends Model
 {
-
+    use HasFactory;
     public $table = 'discountables';
     public $timestamps = false;
 
@@ -62,7 +63,7 @@ class Discountable extends Model
      * @var array
      */
     protected $appends = [
-        
+
     ];
 
     /**

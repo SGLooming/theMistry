@@ -11,6 +11,7 @@ use App\Traits\HasTranslations;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class AvailabilityHour
@@ -28,7 +29,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 class AvailabilityHour extends Model
 {
 
-    use HasTranslations;
+    use HasTranslations,HasFactory;
 
     /**
      * Validation rules

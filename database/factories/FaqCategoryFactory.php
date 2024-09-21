@@ -1,15 +1,18 @@
 <?php
+namespace Database\Factories;
 
 use App\Models\FaqCategory;
-use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-global $i;
-$i = 0;
+class FaqCategoryFactory extends Factory
+{
+    protected $model = FaqCategory::class;
 
-/** @var Factory $factory */
-$factory->define(FaqCategory::class, function () use ($i) {
-    $names = ['Service', 'Payment', 'Support', 'Providers', 'Misc'];
-    return [
-        'name' => $names[$i++],
-    ];
-});
+    public function definition()
+    {
+        $names = ['Service', 'Payment', 'Support', 'Providers', 'Misc'];
+        return [
+            'name' => $this->faker->randomElement($names), 
+        ];
+    }
+}

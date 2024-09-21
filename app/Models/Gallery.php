@@ -12,9 +12,12 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Image\Exceptions\InvalidManipulation;
 use Spatie\Image\Manipulations;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media; // Ensure this is correct
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\MediaLibrary\InteractsWithMedia;
+
 
 /**
  * Class Gallery
@@ -27,11 +30,7 @@ use Spatie\MediaLibrary\Models\Media;
  */
 class Gallery extends Model implements HasMedia
 {
-    use HasMediaTrait {
-        getFirstMediaUrl as protected getFirstMediaUrlTrait;
-    }
-
-    use HasTranslations;
+    use HasFactory,HasTranslations,InteractsWithMedia;
 
     /**
      * Validation rules
@@ -74,7 +73,7 @@ class Gallery extends Model implements HasMedia
      * @param Media|null $media
      * @throws InvalidManipulation
      */
-    public function registerMediaConversions(Media $media = null)
+    public function registerMediaConversions(?Media $media = null): void // Updated signature
     {
         $this->addMediaConversion('thumb')
             ->fit(Manipulations::FIT_CROP, 200, 200)
@@ -84,7 +83,6 @@ class Gallery extends Model implements HasMedia
             ->fit(Manipulations::FIT_CROP, 100, 100)
             ->sharpen(10);
     }
-
     /**
      * to generate media url in case of fallback will
      * return the file type icon

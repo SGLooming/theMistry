@@ -1,13 +1,26 @@
 <?php
 
-use App\Models\Category;
-use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factory;
+namespace Database\Factories;
 
-/** @var Factory $factory */
-$factory->define(Category::class, function (Faker $faker) {
-    return [
-        'name' => $faker->randomElement(['Medical Services', 'Car Services', 'Laundry', 'Barber', 'Washing Dishes', 'Photography']),
-        'description' => $faker->sentences(5, true),
-    ];
-});
+use App\Models\Category;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class CategoryFactory extends Factory
+{
+    protected $model = Category::class;
+
+    public function definition()
+    {
+        return [
+            'name' => $this->faker->randomElement([
+                'Medical Services',
+                'Car Services',
+                'Laundry',
+                'Barber',
+                'Washing Dishes',
+                'Photography'
+            ]),
+            'description' => $this->faker->sentences(5, true),
+        ];
+    }
+}
