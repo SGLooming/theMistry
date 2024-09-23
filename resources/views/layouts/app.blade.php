@@ -49,15 +49,19 @@
                 <a class="nav-link" data-toggle="dropdown" href="#"> <i class="fa fas fa-angle-down"></i> {!! Str::upper(setting('language')) !!}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    {!! Form::open(['url' => ['settings/update'], 'method' => 'patch','id'=>'languages-form']) !!}
-                    {!!  Form::hidden('language',setting('language'),['id'=>'current-language'])!!}
-                    @foreach(getAvailableLanguages() as $code => $lang)
-                        <a href="#" class="dropdown-item @if(setting('language') == $code) active @endif" onclick="changeLanguage('{{$code}}')">
-                            <i class="fas fa-circle mr-2"></i> {!! __($lang) !!}
-                        </a>
-                    @endforeach
-                    {!! Form::close() !!}
+                    <form action="{{ url('settings/update') }}" method="POST" id="languages-form">
+                        @csrf
+                        @method('PATCH')
+                        <input type="hidden" name="language" value="{{ setting('language') }}" id="current-language">
+                
+                        @foreach(getAvailableLanguages() as $code => $lang)
+                            <a href="#" class="dropdown-item @if(setting('language') == $code) active @endif" onclick="changeLanguage('{{ $code }}')">
+                                <i class="fas fa-circle mr-2"></i> {{ __($lang) }}
+                            </a>
+                        @endforeach
+                    </form>
                 </div>
+                
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">

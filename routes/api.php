@@ -133,7 +133,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('users/{user}', [UserAPIController::class, 'update']);
     Route::post('update-password/{user}', [UserAPIController::class, 'updatePassword']);
     
-    Route::get('payments/byMonth', [PaymentAPIController::class, 'byMonth'])->name('payments.byMonth');
+    Route::get('payments/byMonth', [PaymentAPIController::class, 'byMonth'])->name('payments.by.month');
     Route::post('payments/wallets/{id}', [PaymentAPIController::class, 'wallets'])->name('payments.wallets');
     Route::post('payments/cash', [PaymentAPIController::class, 'cash'])->name('payments.cash');
     Route::resource('payment_methods', PaymentMethodAPIController::class)->only(['index']);

@@ -17,12 +17,12 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 use Laracasts\Flash\Flash;
-use RachidLaasri\LaravelInstaller\Helpers\MigrationsHelper;
+// use RachidLaasri\LaravelInstaller\Helpers\MigrationsHelper;
 use Themsaid\Langman\Manager;
 
 class AppSettingController extends Controller
 {
-    use MigrationsHelper;
+    // use MigrationsHelper;
 
     /** @var  UserRepository */
     private $userRepository;

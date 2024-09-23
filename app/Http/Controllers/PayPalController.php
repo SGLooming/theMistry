@@ -12,8 +12,7 @@ use Flash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
-use Srmklive\PayPal\Services\ExpressCheckout;
-
+use Srmklive\PayPal\Services\PayPal;
 class PayPalController extends ParentBookingController
 {
     /**
@@ -23,7 +22,7 @@ class PayPalController extends ParentBookingController
 
     public function __init()
     {
-        $this->provider = new ExpressCheckout();
+        $this->provider = new PayPal();
 
     }
 

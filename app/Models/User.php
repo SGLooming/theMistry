@@ -142,12 +142,12 @@ class User extends Authenticatable implements HasMedia
      */
     public function getFirstMediaUrl($collectionName = 'default', $conversion = '')
     {
-        $url = $this->getFirstMediaUrlTrait($collectionName);
+        $url = $this->getFirstMedia($collectionName);
         if ($url) {
             $array = explode('.', $url);
             $extension = strtolower(end($array));
             if (in_array($extension, config('medialibrary.extensions_has_thumb'))) {
-                return asset($this->getFirstMediaUrlTrait($collectionName, $conversion));
+                return asset($this->getFirstMedia($collectionName, $conversion));
             } else {
                 return asset(config('medialibrary.icons_folder') . '/' . $extension . '.png');
             }

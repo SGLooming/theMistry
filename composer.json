@@ -27,7 +27,7 @@
         "spatie/laravel-permission": "^6.9",
         "spatie/laravel-translatable": "^6.8",
         "spatie/opening-hours": "^4.0",
-        "srmklive/paypal": "*",
+        "srmklive/paypal": "^3.0",
         "yajra/laravel-datatables": "*"
     },
     "require-dev": {

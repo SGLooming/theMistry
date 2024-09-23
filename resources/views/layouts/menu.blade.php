@@ -12,7 +12,7 @@
             <p>{{trans('lang.module_plural')}} @if (config('installer.demo_app')) <span class="right badge badge-danger">New</span> @endif</p></a>
     </li>
 @endcan
-@if(!Module::isActivated('Subscription'))
+@if(!Module::isEnabled('Subscription'))
 @can('notifications.index')
     <li class="nav-item">
         <a class="nav-link {{ Request::is('notifications*') ? 'active' : '' }}" href="{!! route('notifications.index') !!}">@if($icons)
