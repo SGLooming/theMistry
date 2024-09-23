@@ -6,7 +6,7 @@
     <title>{{setting('app_name')}} | {{setting('app_short_description')}}</title>
     <link rel="icon" type="image/png" href="{{$app_logo ?? ''}}"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600&display=fallback">
-    <link rel="stylesheet" href="{{asset('public/vendor/fontawesome-free/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('vendor/fontawesome-free/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/styles.min.css')}}">
 </head>
